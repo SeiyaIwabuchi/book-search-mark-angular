@@ -4,26 +4,25 @@
             <div style="border: 1px solid; width: 600px; height: 100vh; background-color: #faf9f6; position: relative;">
                 <h3>本を読む</h3>
                 <p>そんな日があっても良い</p>
-                <button style="position: absolute; bottom: 30px; right: 30px">書籍を追加</button>
             </div>
             <div style="border: 1px solid; width: calc(100% - 600px); height: 100vh; background-color: #f4f1ee; position: relative;">
                 <form style="display: flex; justify-content: space-between; margin: 30px;">
                     <label style="flex-grow: 1;">
                         作者名
-                        <input type="text" name="author" style="width: 80%; box-sizing: border-box">
+                        <input type="text" name="author" style="width: 80%; box-sizing: border-box" ng-model="searchParam.author">
                     </label>
                     <label style="flex-grow: 1;">
                         タイトル
-                        <input type="text" name="title" style="width: 80%; box-sizing: border-box">
+                        <input type="text" name="title" style="width: 80%; box-sizing: border-box" ng-model="searchParam.title">
                     </label>
-                    <input type="submit" name="検索">
+                    <button ng-click="searchBooks()">検索</button>
                 </form>
-                <div style="padding: 30px 10px; display: flex; border-bottom: 1px solid;" ng-repeat="book in books">
-                    <input type="checkbox" name="check_{{book.id}}" style="margin-right: 30px;">
+                <label style="padding: 30px 10px; display: flex; border-bottom: 1px solid;" ng-repeat="book in books">
+                    <input type="checkbox" name="{{book.id}}" style="margin-right: 30px;" ng-model="book.checked">
                     <span style="margin-right: 30px;">{{ book.author }}</span>
                     <span style="flex-grow: 1;">{{ book.title }}</span>
-                </div>
-                <button style="position: absolute; bottom: 30px; right: 30px;">書籍を追加</button>
+                </label>
+                <button style="position: absolute; bottom: 30px; right: 30px;" ng-click="addBooks()">書籍を追加</button>
             </div>
         </div>
     </div>
